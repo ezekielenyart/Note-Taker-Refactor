@@ -1,8 +1,8 @@
 var connection = require("./connection.js");
-module.exports = {
+var ORM = {
   selectAll() {
-    const queryString = 'SELECT * FROM notes;'
-    return connection.query(queryString)
+    const queryString = 'SELECT * FROM notes';
+    return connection.query(queryString);
   },
   // create(table, columns, values) {
   //   const queryString = `INSERT INTO ?? (${columns.join(', ')}) VALUES ?? 'vals')})`;
@@ -16,8 +16,11 @@ module.exports = {
 },
 
   delete(table, cols, value) {
-    const queryString = 'DELETE FROM ?? WHERE ??=?';
+    const queryString = 'DELETE FROM ?? WHERE ?? = ?';
     return connection.query(queryString, [table, cols, value])
   }
+  
 }
-connection.query("SELECT * FROM notes").then(res => console.log(res))
+
+module.exports = ORM;
+// connection.query("SELECT * FROM notes").then(res => console.log(res))

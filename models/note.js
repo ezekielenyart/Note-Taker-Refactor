@@ -8,7 +8,7 @@ class Notes {
     return orm.create(values)
   }
   remove(values){
-    return orm.delete("stores", 'id', values)
+    return orm.delete("notes", 'id', values)
   }
 };
 

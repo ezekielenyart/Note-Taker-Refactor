@@ -26,5 +26,11 @@ router.post('/api/notes', (req, res) => {
   .then((results) => res.json(results))
   .catch(error => res.status(500).json(error))
 })
+router.delete('/api/notes/:id', (req, res) => {
+  const NoteId = req.params.id;
+  Notes.remove(NoteId)
+  .then(results => res.json(results))
+  .catch(error => res.json(error))
+})
 
 module.exports = router;
