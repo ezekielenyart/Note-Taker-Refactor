@@ -2,9 +2,9 @@
 var express = require("express");
 // var path = require("path");
 const fs = require("fs");
+
 // const { json } = require("express");
-const apiRoutes = require("./controllers")
-const htmlRoutes = require("./")
+
 
 // const { promisify } = require("util");
 // const readFileAsync = promisify(fs.readFile);
@@ -21,10 +21,10 @@ app.use(express.static('public'))
 app.use(express.json());
 
 // =================== ROUTES =====================
-
-app.use("/api", apiRoutes)
-app.use(htmlRoutes)
-
+// ("/api", apiRoutes)
+app.use(require("./controllers/notesController"))
+app.use(require("./controllers/htmlController"))
+// (htmlRoutes)
 // // =================== ROUTES =====================
 
 app.listen(PORT, function () {

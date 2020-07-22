@@ -3,7 +3,7 @@ CREATE DATABASE notes_db;
 
 USE notes_db;
 
-CREATE TABLE storenotes (
+CREATE TABLE notes (
     id INTEGER(10) AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     text VARCHAR(300) NOT NULL,

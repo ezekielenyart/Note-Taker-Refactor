@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Note = require('../models/note');
+const Notes = require('../models/note');
 
 
 
@@ -19,10 +19,11 @@ router.get('/api/notes/:id', (req, res) => {
 })
 
 router.post('/api/notes', (req, res) => {
-  const { title, text} = req.body;
+  console.log(req.body)
+  const { title, text } = req.body;
 
-  Notes.addNote([title, text])
-  .then(() => res.status(200).json(true))
+  Notes.addNote([req.body.title, req.body.text])
+  .then((results) => res.json(results))
   .catch(error => res.status(500).json(error))
 })
 

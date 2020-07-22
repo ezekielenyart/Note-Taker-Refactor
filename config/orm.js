@@ -1,21 +1,23 @@
 var connection = require("./connection.js");
-class ORM {
-  constructor(connection) {
-    this.connection = connection
-  }
-  selectAll(table) {
-    const queryString = 'SELECT * from ??'
-    return this.connection.query(queryString, [table])
-  }
-  create(table, columns, values) {
-    const queryString = `INSERT INTO ?? (${columns.join(', ')}) VALUES (${this.printQuestionMarks(values.length, 'vals')})`;
-    return this.connection.query(queryString, [table, ...values])
-  }
+module.exports = {
+  selectAll() {
+    const queryString = 'SELECT * FROM notes;'
+    return connection.query(queryString)
+  },
+  // create(table, columns, values) {
+  //   const queryString = `INSERT INTO ?? (${columns.join(', ')}) VALUES ?? 'vals')})`;
+  //   return this.connection.query(queryString, [table, ...values])
+  // }
+
+
+  create(values){
+    const queryString = 'INSERT into notes (title,text) value (?,?)'
+    return connection.query(queryString,[...values])
+},
 
   delete(table, cols, value) {
     const queryString = 'DELETE FROM ?? WHERE ??=?';
-    return this.connection.query(queryString, [table, cols, value])
+    return connection.query(queryString, [table, cols, value])
   }
-};
-
-module.exports = new ORM(connection);
+}
+connection.query("SELECT * FROM notes").then(res => console.log(res))

@@ -2,15 +2,15 @@ const orm = require("../config/orm.js");
 
 class Notes {
   getAllNotes() {
-    return orm.selectAll
+    return orm.selectAll()
   }
   addNote(values) {
-    return orm.create("storenotes", ['title', 'text'], values)
+    return orm.create(values)
   }
-  remove(value){
-    return orm.delete("stores", 'id', value)
+  remove(values){
+    return orm.delete("stores", 'id', values)
   }
 };
 
-// Export the database functions for the controller (catsController.js).
+// Export the database functions for the controller (notesController.js).
 module.exports = new Notes();
